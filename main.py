@@ -3,7 +3,7 @@ import flet as ft
 def main(page: ft.Page):
     page.title = "Mera AI Agent"
     page.theme_mode = ft.ThemeMode.DARK
-    
+    page.vertical_alignment = ft.MainAxisAlignment.START
     chat = ft.Column(scroll=ft.ScrollMode.AUTO, expand=True)
     msg = ft.TextField(hint_text="Kuch bhi likho...", expand=True, on_submit=lambda e: send(e))
 
