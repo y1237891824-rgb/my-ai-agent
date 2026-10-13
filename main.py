@@ -5,11 +5,11 @@ def main(page: ft.Page):
     page.theme_mode = ft.ThemeMode.DARK
     page.vertical_alignment = ft.MainAxisAlignment.START
     
-    chat = ft.Column(scroll=ft.ScrollMode.AUTO, expand=True)
-    msg = ft.TextField(hint_text="Kuch bhi likho...", expand=True)
+    chat = ft.Column(scroll=ft.ScrollMode.AUTO, expand=True, auto_scroll=True)
+    msg = ft.TextField(hint_text="Kuch bhi likho...", expand=True, on_submit=lambda e: send(e))
 
     def send(e):
-        if msg.value == "":
+        if not msg.value or msg.value.strip() == "":
             return
         chat.controls.append(ft.Text(f"Tum: {msg.value}", color="yellow"))
         chat.controls.append(ft.Text(f"Agent: Tumne bola \'{msg.value}\' - Mai ready hu!"))
@@ -22,4 +22,5 @@ def main(page: ft.Page):
         ft.Row([msg, ft.ElevatedButton("Send", on_click=send)])
     )
 
-ft.app(target=main)
+if __name__ == "__main__":
+    ft.app(target=main)
